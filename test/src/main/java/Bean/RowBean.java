@@ -24,26 +24,46 @@ public class RowBean {
     private String businessDate;
     @ContentLoopMerge(eachRow = 2)
     @ExcelProperty("营业额")
-    @NumberFormat("#.##%")
+    @NumberFormat("_ ¥* #,##0.00_ ;_ ¥* -#,##0.00_ ;_ ¥* \"-\"??_ ;_ @_ ")
     private Double businessAmount;
     @ContentLoopMerge(eachRow = 2)
     @ExcelProperty("实收合计")
-    @NumberFormat("#.##%")
+    @NumberFormat("_ ¥* #,##0.00_ ;_ ¥* -#,##0.00_ ;_ ¥* \"-\"??_ ;_ @_ ")
     private Double actualInAmount;
     @ContentLoopMerge(eachRow = 2)
     @ExcelProperty("堂食虚收合计")
-    @NumberFormat("#.##%")
-    private Double hallVirtualRevenue;
+    // 会计专用格式
+    @NumberFormat("_ ¥* #,##0.00_ ;_ ¥* -#,##0.00_ ;_ ¥* \"-\"??_ ;_ @_ ")
+    private Double eatInRevenue;
     @ContentLoopMerge(eachRow = 2)
     @ExcelProperty("外卖虚收合计")
-    @NumberFormat("#.##%")
-    private Double deliveryVirtualRevenue;
+    @NumberFormat("_ ¥* #,##0.00_ ;_ ¥* -#,##0.00_ ;_ ¥* \"-\"??_ ;_ @_ ")
+    private Double deliveryRevenue;
     @ExcelProperty("收款")
-    private List<PaymentBean> receipts;
+    private List<TypeBean> receipts;
     @ExcelProperty("堂食虚收")
-    private List<PaymentBean> hallVirtualList;
+    private List<TypeBean> eatInList;
     @ExcelProperty("外卖虚收")
-    private List<PaymentBean> deliveryVirtualList;
+    private List<TypeBean> deliveryList;
+
+    public RowBean() {
+    }
+
+    public RowBean(String sequence, String storeCode, String storeName, String businessDate, Double businessAmount,
+                   Double actualInAmount, Double eatInRevenue, Double deliveryRevenue, List<TypeBean> receipts,
+                   List<TypeBean> eatInList, List<TypeBean> deliveryList) {
+        this.sequence = sequence;
+        this.storeCode = storeCode;
+        this.storeName = storeName;
+        this.businessDate = businessDate;
+        this.businessAmount = businessAmount;
+        this.actualInAmount = actualInAmount;
+        this.eatInRevenue = eatInRevenue;
+        this.deliveryRevenue = deliveryRevenue;
+        this.receipts = receipts;
+        this.eatInList = eatInList;
+        this.deliveryList = deliveryList;
+    }
 
     public String getSequence() {
         return sequence;
@@ -93,43 +113,43 @@ public class RowBean {
         this.actualInAmount = actualInAmount;
     }
 
-    public Double getHallVirtualRevenue() {
-        return hallVirtualRevenue;
+    public Double getEatInRevenue() {
+        return eatInRevenue;
     }
 
-    public void setHallVirtualRevenue(Double hallVirtualRevenue) {
-        this.hallVirtualRevenue = hallVirtualRevenue;
+    public void setEatInRevenue(Double eatInRevenue) {
+        this.eatInRevenue = eatInRevenue;
     }
 
-    public Double getDeliveryVirtualRevenue() {
-        return deliveryVirtualRevenue;
+    public Double getDeliveryRevenue() {
+        return deliveryRevenue;
     }
 
-    public void setDeliveryVirtualRevenue(Double deliveryVirtualRevenue) {
-        this.deliveryVirtualRevenue = deliveryVirtualRevenue;
+    public void setDeliveryRevenue(Double deliveryRevenue) {
+        this.deliveryRevenue = deliveryRevenue;
     }
 
-    public List<PaymentBean> getReceipts() {
+    public List<TypeBean> getReceipts() {
         return receipts;
     }
 
-    public void setReceipts(List<PaymentBean> receipts) {
+    public void setReceipts(List<TypeBean> receipts) {
         this.receipts = receipts;
     }
 
-    public List<PaymentBean> getHallVirtualList() {
-        return hallVirtualList;
+    public List<TypeBean> getEatInList() {
+        return eatInList;
     }
 
-    public void setHallVirtualList(List<PaymentBean> hallVirtualList) {
-        this.hallVirtualList = hallVirtualList;
+    public void setEatInList(List<TypeBean> eatInList) {
+        this.eatInList = eatInList;
     }
 
-    public List<PaymentBean> getDeliveryVirtualList() {
-        return deliveryVirtualList;
+    public List<TypeBean> getDeliveryList() {
+        return deliveryList;
     }
 
-    public void setDeliveryVirtualList(List<PaymentBean> deliveryVirtualList) {
-        this.deliveryVirtualList = deliveryVirtualList;
+    public void setDeliveryList(List<TypeBean> deliveryList) {
+        this.deliveryList = deliveryList;
     }
 }

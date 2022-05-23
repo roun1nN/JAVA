@@ -1,5 +1,4 @@
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
 
 public class ThreadTest {
     public static void main(String[] args) {
@@ -9,7 +8,8 @@ public class ThreadTest {
         th2.start();
         th1.interrupt();
         th2.interrupt();
-        ThreadPoolExecutor thExecutor = new ThreadPoolExecutor();
+        ThreadPoolExecutor thExecutor = new ThreadPoolExecutor(4, 10, 1000, TimeUnit.MILLISECONDS,
+                new SynchronousQueue<Runnable>(), Executors.defaultThreadFactory(),new ThreadPoolExecutor.AbortPolicy());
         ThreadFactory thFactory = thExecutor.getThreadFactory();
     }
 }

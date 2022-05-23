@@ -1,0 +1,6 @@
+##ignore these files/directories##
+/target/
+.idea
+.project
+.settings
+*.iml
