@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 数组属性转换器
+ * 数组属性转换器,需要使用时可在wirte方法后用registerHandler注册
  */
 
 @Component

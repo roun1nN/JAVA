@@ -1,9 +1,12 @@
-package Bean;
+package output.bean;
+
+import com.alibaba.excel.annotation.ExcelProperty;
 
 import java.math.BigDecimal;
 
-public class DeliveryVirtualBean {
+public class EatInVirtualBean {
 
+    @ExcelProperty("${paymentName}")
     private String paymentName;
 
     private BigDecimal amount;

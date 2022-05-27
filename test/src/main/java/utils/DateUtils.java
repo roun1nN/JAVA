@@ -5,6 +5,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * 使用Hutool中的DateUtil替换该工具类
+ */
+@Deprecated
 public class DateUtils {
 
 	/** 年-月-日 时:分:秒 显示格式 */
