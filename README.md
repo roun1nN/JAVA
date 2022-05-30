@@ -12,3 +12,11 @@ roun1nN 参与贡献
 3.  提交代码
 4.  新建 Pull Request
 
+参考
+# 非注解自定义表头
+https://blog.csdn.net/L1569850979/article/details/123086515
+https://www.jianshu.com/p/d1d264c817ef
+# 基于easyexcel通用的行、列单元格合并
+https://blog.csdn.net/sinat_33472737/article/details/117280486
+# 自适应列宽
+https://blog.csdn.net/Naturallxd/article/details/115758688
