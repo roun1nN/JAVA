@@ -89,4 +89,17 @@ public class JTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 抛出异常的构造方法功能测试
+     */
+    @Test
+    public void testCatchException() {
+        InvocationExceptionTest testObj = new InvocationExceptionTest();
+        try {
+            testObj.throwExceptionTest();
+        } catch (Exception e) {
+            log.error("日期转换出错", e);
+        }
+    }
 }
