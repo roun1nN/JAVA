@@ -11,12 +11,12 @@ public class ManagementBean {
     private int paymentSort;
 //    @ExcelProperty("${this.paymentName}")
 //    @NumberFormat("_ ¥* #,##0.00_ ;_ ¥* -#,##0.00_ ;_ ¥* \"-\"??_ ;_ @_ ")
-    private BigDecimal amount;
+    private Double amount;
 
     public ManagementBean() {
     }
 
-    public ManagementBean(String paymentName, int paymentSort, BigDecimal amount) {
+    public ManagementBean(String paymentName, int paymentSort, Double amount) {
         this.name = paymentName;
         this.paymentSort = paymentSort;
         this.amount = amount;
@@ -38,11 +38,11 @@ public class ManagementBean {
         this.paymentSort = paymentSort;
     }
 
-    public BigDecimal getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 }

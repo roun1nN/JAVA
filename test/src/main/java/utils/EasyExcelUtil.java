@@ -72,9 +72,11 @@ public class EasyExcelUtil {
 
 class ColumnWidthStrategyHandler extends AbstractColumnWidthStyleStrategy {
 
+    Logger log = LoggerFactory.getLogger(this.getClass());
+
     private static final int MAX_COLUMN_WIDTH = 255;
     //因为在自动列宽的过程中，有些设置地方让列宽显得紧凑，所以做出了个判断
-    private static final int COLUMN_WIDTH = 20;
+    private static final int COLUMN_WIDTH = 25;
     private  Map<Integer, Map<Integer, Integer>> CACHE = new HashMap(8);
 
     public ColumnWidthStrategyHandler() {

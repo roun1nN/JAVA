@@ -5,6 +5,7 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import org.junit.Test;
+import output.bean.ManagementFeeBean;
 import utils.CollectionUtils;
 import utils.DateUtils;
 import utils.EasyExcelUtil;
@@ -30,7 +31,8 @@ public class ManagementFeeExcelExport {
             String dataString = jsonData.getStr("data");
             String outs = JSONUtil.parseObj(dataString).getStr("managementFeeList");
             JSONArray outJArr = JSONUtil.parseArray(outs);
-            List<ManagementFeeOutput> rowList = outJArr.toList(ManagementFeeOutput.class);
+//            List<ManagementFeeOutput> rowList = outJArr.toList(ManagementFeeOutput.class);
+            List<ManagementFeeOutput> rowList = createRowList();
             String storeName = rowList.get(0).getStoreName();
             String dateSt = DateUtils.stringDateFormat(rowList.get(0).getBusinessDate(), DateUtils.DATE_TO_STRING_SHORT_PATTERN);
             String dateEd = DateUtils.stringDateFormat(rowList.get(rowList.size() - 1).getBusinessDate(), DateUtils.DATE_TO_STRING_SHORT_PATTERN);
@@ -185,6 +187,34 @@ public class ManagementFeeExcelExport {
         }
         dataList.add(summaryRow);
         return dataList;
+    }
+
+    private List<ManagementFeeOutput> createRowList() {
+        List<ManagementFeeOutput> data = new ArrayList<>(1);
+        ManagementFeeOutput singleRow = new ManagementFeeOutput();
+        data.add(singleRow);
+        singleRow.setSequence("1");
+        singleRow.setStoreCode("800208");
+        singleRow.setStoreName("黄记煌上海普陀长寿路巴黎春天店");
+        singleRow.setBusinessDate("2022-05-06");
+        singleRow.setTotalAmount(3452.80);
+        singleRow.setIncomeAmount(148.00);
+        singleRow.setEatInDisAmount(0d);
+        singleRow.setDeliveryDisAmount(148.00);
+        List<ManagementBean> innerList = new ArrayList<>(1);
+        ManagementBean bean = new ManagementBean("现金", 1, 148.00);
+        innerList.add(bean);
+        singleRow.setIncomeList(innerList);
+        innerList = new ArrayList<>(1);
+        bean = new ManagementBean("现金", 1, 148.00);
+        innerList.add(bean);
+        singleRow.setEatInDisList(innerList);
+        innerList = new ArrayList<>(1);
+        bean = new ManagementBean("现金", 1, 148.00);
+        innerList.add(bean);
+        singleRow.setDeliveryDisList(innerList);
+        data.add(singleRow);
+        return data;
     }
 }
 
