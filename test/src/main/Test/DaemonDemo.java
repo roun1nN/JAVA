@@ -32,4 +32,17 @@ public class DaemonDemo {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testMainSleep() {
+        // main函数执行后也是一个线程，此处测试主线程中执行当前线程休眠，主线程的执行也会休眠
+        for (int i = 1; i < 10; i ++) {
+            System.out.println("这是第" + i + "次");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
