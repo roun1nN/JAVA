@@ -22,6 +22,8 @@ public class DaemonDemo {
         long curTime = System.currentTimeMillis();
         daemonThread.setDaemon(true);
         daemonThread.start();
+        // start执行之后再将线程设置为守护线程会报错,会作为欧普通线程继续执行
+//        daemonThread.setDaemon(true);
         //确保main线程结束前能给daemonThread能够分到时间片
         try {
             System.out.println("main中休眠前守护进程执行时间:" + (System.currentTimeMillis() - curTime));

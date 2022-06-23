@@ -1,7 +1,10 @@
+import org.junit.Test;
+
 import java.util.concurrent.*;
 
 public class ThreadTest {
-    public static void main(String[] args) {
+    @Test
+    public void runThread() {
         /*ThreadObject1 th1 = new ThreadObject1("首个线程");
         ThreadObject2 th2 = new ThreadObject2("次个线程");
         th1.start();
@@ -57,6 +60,23 @@ public class ThreadTest {
             e.printStackTrace();
         }
     }
+
+    // 线程join(),暂时不会用
+    @Test
+    public void testJoin() {
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(4, 10, 1000, TimeUnit.MILLISECONDS,
+                new SynchronousQueue<Runnable>(), Executors.defaultThreadFactory(),new ThreadPoolExecutor.AbortPolicy());
+        ThreadFactory threadFactory = pool.getThreadFactory();
+        Thread th1 = threadFactory.newThread(new ThreadObject1());
+        Thread th2 = threadFactory.newThread(new ThreadObject2());
+        try {
+            th2.join(1000);
+            th2.start();
+            th1.start();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
@@ -67,6 +87,8 @@ class ThreadObject1 extends Thread{
         super(name);
     }
 
+    public ThreadObject1() {}
+
     @Override
     public void start() {
         System.out.println("线程一启动:" + this.getName());
@@ -75,7 +97,7 @@ class ThreadObject1 extends Thread{
 
     @Override
     public void run() {
-        for (int i = 0; i < 100; i ++) {
+        for (int i = 0; i < 5; i ++) {
             System.out.println("这是第一个线程:" + currentThread().getName());
             try {
                 Thread.sleep(500);
@@ -87,6 +109,8 @@ class ThreadObject1 extends Thread{
 }
 
 class ThreadObject2 extends Thread{
+
+    public ThreadObject2(){}
 
     public ThreadObject2(String name) {
         super(name);
@@ -100,7 +124,7 @@ class ThreadObject2 extends Thread{
 
     @Override
     public void run() {
-        for (int i = 0; i < 100; i ++) {
+        for (int i = 0; i < 5; i ++) {
             System.out.println("这是第二个线程:" + this.getName());
             try {
                 Thread.sleep(500);
