@@ -40,11 +40,22 @@ public class ThreadTest {
                         System.out.println("这是第四个线程，此时count=" + count);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                    } finally {
+                        System.out.println("第四个线程final");
                     }
+                    System.out.println("这是第四个线程，此时count=" + count);
                 }
             }
         });
         th3.start();
+        th4.setDaemon(true);
+        th4.start();
+        try {
+            System.out.println("第三个线程优先级为:" + th3.getPriority() + ",第四个线程优先级为:" + th4.getPriority());
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
 
