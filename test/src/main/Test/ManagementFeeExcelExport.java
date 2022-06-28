@@ -180,10 +180,18 @@ public class ManagementFeeExcelExport {
         summaryRow.add("");
         summaryRow.add("");
         summaryRow.add("合计");
-        char column;
         for (int i = 0; i < dataList.get(0).size() - 4; i++) {
-             column = (char) ('E' + i);
-             summaryRow.add("SUM(" + column + "3:" + column + (dataList.size() + 2) + ")");
+            char column = (char) ('E' + i);
+            if (column <= 'Z') {
+                summaryRow.add("SUM(" + column + "3:" + column + (dataList.size() + 2) + ")");
+            } else {
+                // 列名首字母
+                char columnFormerChar = (char)((column - 'Z' - 1) / 26 + 'A');
+                // 列名第二个字母
+                char columnLatterChar = (char)((column - 'Z' - 1) % 26 + 'A');
+                String columnName = String.valueOf(columnFormerChar) + columnLatterChar;
+                summaryRow.add("SUM(" + columnName + "3:" + columnName + (dataList.size() + 2) + ")");
+            }
         }
         dataList.add(summaryRow);
         return dataList;
@@ -212,6 +220,9 @@ public class ManagementFeeExcelExport {
         innerList = new ArrayList<>(1);
         bean = new ManagementBean("现金", 1, 148.00);
         innerList.add(bean);
+        for (int i = 0; i < 60; i++) {
+            innerList.add(bean);
+        }
         singleRow.setDeliveryDisList(innerList);
         data.add(singleRow);
         return data;
